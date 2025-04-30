@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <<meta charset="UTF-8">
+    <title>{% block title %}Receptes{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('search_page') }}">🔍 Meklēt</a> |
+        <a href="{{ url_for('add_recipe') }}">➕ Pievienot recepti</a> |
+        <a href="{{ url_for('show_recipes') }}">📚 Visas receptes</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
+

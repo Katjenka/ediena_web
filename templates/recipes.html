@@ -1,0 +1,43 @@
+<meta charset="UTF-8">
+{% extends "base.html" %}
+{% block title %}Visas receptes{% endblock %}
+{% block content %}
+<h2>Receptes saraksts</h2>
+{% if recipes %}
+    <ul>
+    {% for recipe in recipes %}
+        <li>
+            <a href="javascript:void(0);" onclick="toggleDetails('details{{ loop.index }}')">
+                {{ recipe.name }} ({{ recipe.category }})
+            </a>
+            <div id="details{{ loop.index }}" style="display: none; margin-left: 20px;">
+                <h4>Sastāvdaļas:</h4>
+                <ul>
+                    {% for ing in recipe.ingredients %}
+                        <li>{{ ing.name }} – {{ ing.quantity }} {{ ing.unit }}</li>
+                    {% endfor %}
+                </ul>
+                <h4>Pagatavošana:</h4>
+                <pre>{{ recipe.steps }}</pre>
+                <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}">
+                    <button>Sākt gatavot</button>
+                </a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nav nevienas receptes.</p>
+{% endif %}
+
+<script>
+function toggleDetails(id) {
+    const el = document.getElementById(id);
+    if (el.style.display === 'none') {
+        el.style.display = 'block';
+    } else {
+        el.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

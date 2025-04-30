@@ -1,0 +1,76 @@
+body {
+  background-color: #F5FFF7;
+  color: #2E4E3F;
+  font-family: "Segoe UI", Helvetica, sans-serif;
+  margin: 0;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+header, nav {
+  background-color: #A0E8AF;
+  padding: 10px 20px;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: #2E4E3F;
+  text-decoration: none;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+h1, h2, h3 {
+  color: #2E4E3F;
+}
+
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #C8E6C9;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #A0E8AF;
+  color: #2E4E3F;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #8CD49B;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #DDEFE3;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.hidden {
+  display: none;
+}
+
+.recipe-title {
+  cursor: pointer;
+  margin: 0;
+}

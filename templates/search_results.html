@@ -1,0 +1,22 @@
+<meta charset="UTF-8">
+{% extends "base.html" %}
+{% block title %}Meklēšanas rezultāti{% endblock %}
+{% block content %}
+<h2>Meklēšanas rezultāti</h2>
+{% if results %}
+    {% for result in results %}
+        {% set recipe = result[0] %}
+        {% set missing = result[1] %}
+        {% set count = result[2] %}
+        <div>
+            <h3>{{ recipe.name }} ({{ recipe.category }})</h3>
+            <p>Jānopērk: {{ missing | join(', ') if missing else 'Nekas nav jāpērk!' }}</p>
+            <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}">
+                <button>Sākt gatavot</button>
+            </a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Nekas netika atrasts.</p>
+{% endif %}
+{% endblock %}
