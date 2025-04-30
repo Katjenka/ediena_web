@@ -37,7 +37,7 @@ def search():
 
     for r in recipes:
         ing_names = {i['name'].lower() for i in r['ingredients']}
-        missing = list(ing_names - available)
+        missing = [i for i in r['ingredients'] if i['name'].lower() not in available]
         if ing_names & available:
             results.append((r, missing, len(missing)))
 
@@ -98,7 +98,6 @@ def view_recipe(index):
         return render_template('recipe_detail.html', recipe=recipes[index])
     return "Recepte nav atrasta", 404
 
-# ✅ REDIĢĒT
 @app.route('/edit/<int:recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
     recipes = load_recipes()
@@ -129,7 +128,6 @@ def edit_recipe(recipe_id):
 
     return render_template('edit.html', recipe=recipe)
 
-# ✅ DZĒST
 @app.route('/delete/<int:recipe_id>', methods=['POST'])
 def delete_recipe(recipe_id):
     recipes = load_recipes()
