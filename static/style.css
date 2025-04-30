@@ -74,3 +74,50 @@ button:hover {
   cursor: pointer;
   margin: 0;
 }
+.action-btn {
+  background-color: #A0E8AF;
+  color: #2E4E3F;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+
+.edit-btn {
+  background-color: #FFD966;
+  color: #2E4E3F;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+
+.delete-btn {
+  background-color: #E57373;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.edit-btn:hover {
+  background-color: #ffca28;
+}
+
+.action-btn:hover {
+  background-color: #8CD49B;
+}
+
