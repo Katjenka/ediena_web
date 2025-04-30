@@ -1,28 +1,15 @@
 [
   {
-    "id": 0,
-    "name": "Cepta ola",
-    "category": "Brokastis",
-    "ingredients": [
-      {
-        "name": "Ola",
-        "quantity": "1",
-        "unit": "gab"
-      }
-    ],
-    "steps": "Paņem olu\r\nCep\r\nĒd"
-  },
-  {
     "id": 1,
     "name": "cepta ola",
     "category": "Brokastis",
     "ingredients": [
       {
         "name": "ola",
-        "quantity": "2",
-        "unit": "gab"
+        "quantity": "1",
+        "unit": "g"
       }
     ],
-    "steps": "ka\r\npec\r\nes to\r\ndRU"
+    "steps": "1\r\n2\r\n3\r\n"
   }
 ]

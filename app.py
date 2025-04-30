@@ -64,8 +64,9 @@ def add_recipe():
                     'unit': ingredient_units[i]
                 })
 
+        new_id = max((r.get('id', 0) for r in recipes), default=0) + 1
         recipes.append({
-            'id': len(recipes),
+            'id': new_id,
             'name': name,
             'category': category,
             'ingredients': ingredients,
@@ -90,7 +91,6 @@ def recipe_detail(recipe_id):
         return "Recepte nav atrasta", 404
     return render_template('recipe_detail.html', recipe=recipe)
 
-# ✅ Trūkstošais view_recipe route priekš "Sākt gatavot" pogas
 @app.route('/view/<int:index>')
 def view_recipe(index):
     recipes = load_recipes()
@@ -98,5 +98,45 @@ def view_recipe(index):
         return render_template('recipe_detail.html', recipe=recipes[index])
     return "Recepte nav atrasta", 404
 
+# ✅ REDIĢĒT
+@app.route('/edit/<int:recipe_id>', methods=['GET', 'POST'])
+def edit_recipe(recipe_id):
+    recipes = load_recipes()
+    recipe = next((r for r in recipes if r['id'] == recipe_id), None)
+    if not recipe:
+        return "Recepte nav atrasta", 404
+
+    if request.method == 'POST':
+        recipe['name'] = request.form['name']
+        recipe['category'] = request.form['category']
+        recipe['steps'] = request.form['steps']
+        ingredient_names = request.form.getlist('ingredient_name')
+        ingredient_quantities = request.form.getlist('ingredient_quantity')
+        ingredient_units = request.form.getlist('ingredient_unit')
+
+        ingredients = []
+        for i in range(len(ingredient_names)):
+            if ingredient_names[i].strip():
+                ingredients.append({
+                    'name': ingredient_names[i],
+                    'quantity': ingredient_quantities[i],
+                    'unit': ingredient_units[i]
+                })
+
+        recipe['ingredients'] = ingredients
+        save_recipes(recipes)
+        return redirect(url_for('show_recipes'))
+
+    return render_template('edit.html', recipe=recipe)
+
+# ✅ DZĒST
+@app.route('/delete/<int:recipe_id>', methods=['POST'])
+def delete_recipe(recipe_id):
+    recipes = load_recipes()
+    recipes = [r for r in recipes if r['id'] != recipe_id]
+    save_recipes(recipes)
+    return redirect(url_for('show_recipes'))
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
