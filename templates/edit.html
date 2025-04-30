@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Rediģēt recepti{% endblock %}
+{% block content %}
+<h2>Rediģēt recepti</h2>
+<form method="post">
+    Nosaukums: <input type="text" name="name" value="{{ recipe.name }}"><br>
+    Kategorija: <input type="text" name="category" value="{{ recipe.category }}"><br>
+    <h3>Sastāvdaļas</h3>
+    <div id="ingredients">
+        {% for ing in recipe.ingredients %}
+        <div>
+            Nosaukums: <input name="ingredient_name" value="{{ ing.name }}">
+            Daudzums: <input name="ingredient_quantity" value="{{ ing.quantity }}">
+            Vienība: <input name="ingredient_unit" value="{{ ing.unit }}">
+        </div>
+        {% endfor %}
+    </div>
+    <button type="button" onclick="addIngredient()">Pievienot sastāvdaļu</button><br><br>
+
+    <h3>Pagatavošana</h3>
+    <textarea name="steps" rows="5" cols="40">{{ recipe.steps }}</textarea><br>
+    <button type="submit">Saglabāt</button>
+</form>
+
+<script>
+function addIngredient() {
+    const container = document.getElementById('ingredients');
+    const div = document.createElement('div');
+    div.innerHTML = 'Nosaukums: <input name="ingredient_name"> Daudzums: <input name="ingredient_quantity"> Vienība: <input name="ingredient_unit">';
+    container.appendChild(div);
+}
+</script>
+{% endblock %}
