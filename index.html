@@ -1,0 +1,47 @@
+<meta charset="UTF-8">
+{% extends "base.html" %}
+{% block title %}Pievienot recepti{% endblock %}
+{% block content %}
+<h2>Pievienot recepti</h2>
+<form method="post">
+    <input type="text" name="name" placeholder="Receptes nosaukums" required><br>
+    <select name="category">
+        <option>Brokastis</option>
+        <option>Zupas</option>
+        <option>Otrie ēdieni</option>
+        <option>Deserti</option>
+        <option>Dzērieni</option>
+    </select><br>
+    <div id="ingredients">
+        <h4>Sastāvdaļas:</h4>
+        <div>
+            <input name="ingredient_name" placeholder="Nosaukums">
+            <input name="ingredient_quantity" type="number" placeholder="Daudzums" style="width: 80px;">
+            <select name="ingredient_unit">
+                <option>g</option><option>ml</option><option>kg</option><option>l</option>
+                <option>ēd.k.</option><option>t.k.</option><option>šķipsniņa</option><option>gab</option><option>x</option>
+            </select>
+        </div>
+    </div>
+    <button type="button" onclick="addIngredient()">+ Sastāvdaļa</button><br><br>
+    <textarea name="steps" placeholder="Ievadi receptes soļus" rows="10" cols="80" required></textarea><br>
+    <button type="submit">Saglabāt recepti</button>
+</form>
+
+<script>
+function addIngredient() {
+    const container = document.getElementById('ingredients');
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <input name="ingredient_name" placeholder="Nosaukums">
+        <input name="ingredient_quantity" type="number" placeholder="Daudzums" style="width: 80px;">
+        <select name="ingredient_unit">
+            <option>g</option><option>ml</option><option>kg</option><option>l</option>
+            <option>ēd.k.</option><option>t.k.</option><option>šķipsniņa</option><option>gab</option><option>x</option>
+        </select>
+    `;
+    container.appendChild(div);
+}
+</script>
+{% endblock %}
+

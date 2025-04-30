@@ -1,0 +1,15 @@
+<meta charset="UTF-8">
+{% extends "base.html" %}
+{% block title %}{{ recipe.name }}{% endblock %}
+{% block content %}
+<h2>{{ recipe.name }} ({{ recipe.category }})</h2>
+<h4>Sastāvdaļas:</h4>
+<ul>
+    {% for ing in recipe.ingredients %}
+        <li>{{ ing.name }} – {{ ing.quantity }} {{ ing.unit }}</li>
+    {% endfor %}
+</ul>
+<h4>Pagatavošana:</h4>
+<pre>{{ recipe.steps }}</pre>
+<a href="{{ url_for('show_recipes') }}">⬅ Atpakaļ uz receptēm</a>
+{% endblock %}

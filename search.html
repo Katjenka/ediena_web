@@ -1,0 +1,10 @@
+<meta charset="UTF-8">
+{% extends "base.html" %}
+{% block title %}Meklēt receptes{% endblock %}
+{% block content %}
+<h2>Meklēt receptes pēc sastāvdaļām</h2>
+<form method="post" action="{{ url_for('search') }}">
+    <input type="text" name="query" placeholder="piemēram: piens, ola, siers" required>
+    <button type="submit">Meklēt</button>
+</form>
+{% endblock %}

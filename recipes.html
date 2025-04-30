@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Visas receptes{% endblock %}
+{% block content %}
+<h2>Receptes saraksts</h2>
+{% if recipes %}
+    <ul>
+    {% for recipe in recipes %}
+        <li>
+            <p class="recipe-title" onclick="toggleDetails('details{{ loop.index }}')">
+                {{ recipe.name }} ({{ recipe.category }})
+            </p>
+            <div id="details{{ loop.index }}" class="hidden" style="margin-left: 20px;">
+                <h4>Sastāvdaļas:</h4>
+                <ul>
+                    {% for ing in recipe.ingredients %}
+                        <li>{{ ing.name }} – {{ ing.quantity }} {{ ing.unit }}</li>
+                    {% endfor %}
+                </ul>
+                <h4>Pagatavošana:</h4>
+                <pre>{{ recipe.steps }}</pre>
+
+                <div class="button-group">
+                    <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}">
+                        <button class="btn start-btn">Sākt gatavot</button>
+                    </a>
+                    <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}">
+                        <button class="btn edit-btn">Rediģēt</button>
+                    </a>
+                    <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn delete-btn">Dzēst</button>
+                    </form>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nav nevienas receptes.</p>
+{% endif %}
+
+<script>
+function toggleDetails(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('hidden');
+}
+</script>
+{% endblock %}
+
+
